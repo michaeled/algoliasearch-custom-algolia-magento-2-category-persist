@@ -564,7 +564,6 @@ requirejs(['algoliaBundle'], function(algoliaBundle) {
 							}
 							// Handle categories
 							if (currentFacet.attribute == 'categories') {
-                                // SA: save category state
 								routeParameters[currentFacet.attribute] = (uiStateProductIndex.hierarchicalMenu &&
 									uiStateProductIndex.hierarchicalMenu[currentFacet.attribute+ '.level0'] &&
 									uiStateProductIndex.hierarchicalMenu[currentFacet.attribute+ '.level0'].join('~'));
@@ -603,7 +602,6 @@ requirejs(['algoliaBundle'], function(algoliaBundle) {
 							// Handle refinement facets
 							if (currentFacet.attribute != 'categories' && (currentFacet.type == 'conjunctive' || currentFacet.type == 'disjunctive')) {
 								uiStateProductIndex['refinementList'][currentFacet.attribute] = routeParameters[currentFacet.attribute] && routeParameters[currentFacet.attribute].split('~');
-
                                 if (algoliaConfig.isLandingPage &&
 									typeof uiStateProductIndex['refinementList'][currentFacet.attribute] === 'undefined' &&
 									currentFacet.attribute in landingPageConfig) {
@@ -612,11 +610,7 @@ requirejs(['algoliaBundle'], function(algoliaBundle) {
 							}
 							// Handle categories facet
 							if (currentFacet.attribute == 'categories') {
-                                // SA: load category state
 								uiStateProductIndex['hierarchicalMenu']['categories.level0'] = routeParameters['categories'] && routeParameters['categories'].split('~');
-
-                                console.log('z', uiStateProductIndex)
-
 								if (algoliaConfig.isLandingPage && !algoliaConfig.isCategoryPage &&
 									typeof uiStateProductIndex['hierarchicalMenu']['categories.level0'] === 'undefined' &&
 									'categories.level0' in landingPageConfig) {
